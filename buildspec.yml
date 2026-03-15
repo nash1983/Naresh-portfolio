@@ -21,5 +21,5 @@ artifacts:
   exclude-paths:
     - ".git/**"
     - ".git"
-    
+  
   discard-paths: no
