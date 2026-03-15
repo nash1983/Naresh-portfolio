@@ -1,43 +1,25 @@
 version: 0.2
 
-# ============================================================
-# buildspec.yml — Naresh Portfolio (Static HTML/CSS/JS)
-# Repo: https://github.com/nash1983/Naresh-portfolio
-# No build step needed — pure static site, just package it
-# ============================================================
-
 phases:
   pre_build:
     commands:
-      - echo "=========================================="
-      - echo "Starting build for Naresh Portfolio"
-      - echo "Build ID: $CODEBUILD_BUILD_ID"
-      - echo "Commit: $CODEBUILD_RESOLVED_SOURCE_VERSION"
-      - echo "=========================================="
-      - echo "Validating required files exist..."
-      - test -f index.html || (echo "ERROR: index.html not found!" && exit 1)
-      - test -f appspec.yml || (echo "ERROR: appspec.yml not found!" && exit 1)
-      - echo "Required files validated successfully."
+      - echo "Starting build for Naresh portfolio"
+      - ls -la
+      - test -f index.html || (echo "ERROR - index.html not found" && exit 1)
 
   build:
     commands:
-      - echo "Packaging static site assets..."
-      - echo "No compile/build step needed — pure static HTML/CSS/JS"
-      - echo "Files to be deployed:"
-      - ls -la
+      - echo "Static site - no build step required"
+      - echo "Packaging files for deployment"
 
   post_build:
     commands:
-      - echo "Build completed successfully!"
-      - echo "Artifact contents:"
-      - find . -type f -not -path './.git/*' | head -30
-
-# Package everything (excluding .git) as the deployment artifact
+      - echo "Build complete"
 artifacts:
   files:
-    - '**/*'
+    - "**/*"
   exclude-paths:
-    - '.git/**'
-    - '.gitignore'
-    - 'README.md'
+    - ".git/**"
+    - ".git"
+    
   discard-paths: no
